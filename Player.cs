@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     public ParticleSystem feverEffect; // 피버 이벤트    
 
+    public GameObject ShopUI; //상점 UI
+
     private void Update()
     {
         moneyUI.text = "지갑 : "+ this.money +" 원";
