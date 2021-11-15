@@ -15,27 +15,43 @@ public class Player : MonoBehaviour
 
     public GameObject ShopUI; //상점 UI
 
+    public Item item; //아이템
+
     private void Update()
     {
         moneyUI.text = "지갑 : "+ this.money +" 원";
         FeverEvent();
     }
 
-    public void AddMoney()
+    public void AddMoney() //돈 더하는 함수
     {
-        int mp = isFever ? moneyPower * 2 : moneyPower;
+        int mp = this.moneyPower;
+
+        if (this.item != null) {
+            mp += this.item.GetMp();
+        }
+
+        if (isFever) {
+            mp = mp * 2;
+        }
+
         this.money = this.money + mp;
+
+
+        // 피버일때 
+        // 1. 두배 후에 아이템 공격력 ++
+
+        // 2. 아이템 공격력 더해서 두배
     }
 
-    public void ToggleFever()
+    public void ToggleFever() //피버 토글 함수 겸사겸사 파티클
     {
-        isFever = !isFever;
-        //Instantiate(feverEffect, FeverTimeUi.transform);
+        isFever = !isFever;        
         ParticleSystem particleObject = Instantiate(feverEffect, FeverTimeUi.transform);
         particleObject.Play();
     }
 
-    private void FeverEvent()
+    private void FeverEvent() //피버 이벤트
     {
         if (feverTime <= 0) {
             isFever = false;
@@ -44,5 +60,11 @@ public class Player : MonoBehaviour
             feverTime -= Time.deltaTime;
         }
         FeverTimeUi.text = Mathf.Round(feverTime) + "초";
+    }
+
+    public void SetItem(Item item) //아이템 셋 하는함수
+    {
+        this.item = item;
+        Debug.Log(item.itemName + "장착 완료");
     }
 }
