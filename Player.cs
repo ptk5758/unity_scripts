@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
 
     public GameObject ShopUI; //상점 UI
 
-    public Item item; //아이템
+    private Item item; //아이템
+    public Text weaponUi; //아이템 Ui
 
     private void Update()
     {
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
         if (isFever) {
             mp = mp * 2;
         }
+
 
         this.money = this.money + mp;
 
@@ -64,7 +66,12 @@ public class Player : MonoBehaviour
 
     public void SetItem(Item item) //아이템 셋 하는함수
     {
+        
         this.item = item;
+        weaponUi.text = "장착중인 무기 : " + this.item.itemName;
         Debug.Log(item.itemName + "장착 완료");
     }
 }
+/////////////////////////////////////////////////////
+// 1. 있는 기능 잘쓰기 => private static void int class  이런 기능 잘다루기 
+// 2. 알고리즘 잘쓰기 => 

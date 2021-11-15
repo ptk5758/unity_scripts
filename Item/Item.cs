@@ -39,6 +39,7 @@ public class Item : MonoBehaviour, IPointerClickHandler
             return;
         }
 
+        player.money -= this.price;
         player.SetItem(this);
         isBuy = true;
     }
