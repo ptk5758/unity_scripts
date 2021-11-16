@@ -10,6 +10,9 @@ public class Player : MonoBehaviour
     public bool isFever; //피버 인지아닌지
     public Text FeverTimeUi; // 피버 타임 UI
     public float feverTime; // 피버 타임
+    public SpriteRenderer feverLight; //피버 타임을 알리는 등
+    public int buyFeverTime; // 피버타임 판매 시간
+    public int feverTimePrice; // 피버타임 구매 가격 분당
 
     public ParticleSystem feverEffect; // 피버 이벤트    
 
@@ -17,11 +20,17 @@ public class Player : MonoBehaviour
 
     private Item item; //아이템
     public Text weaponUi; //아이템 Ui
+    
 
     private void Update()
     {
         moneyUI.text = "지갑 : "+ this.money +" 원";
         FeverEvent();
+    }
+
+    private void Awake()
+    {
+        feverLight.color = Color.blue;
     }
 
     public void AddMoney() //돈 더하는 함수
@@ -48,9 +57,16 @@ public class Player : MonoBehaviour
 
     public void ToggleFever() //피버 토글 함수 겸사겸사 파티클
     {
-        isFever = !isFever;        
+        isFever = !isFever;
+
+        if (isFever) {
+            feverLight.color = Color.red;
+        } else {
+            feverLight.color = Color.blue;
+        }
+
         ParticleSystem particleObject = Instantiate(feverEffect, FeverTimeUi.transform);
-        particleObject.Play();
+        particleObject.Play();        
     }
 
     private void FeverEvent() //피버 이벤트
@@ -69,9 +85,18 @@ public class Player : MonoBehaviour
         
         this.item = item;
         weaponUi.text = "장착중인 무기 : " + this.item.itemName;
-        Debug.Log(item.itemName + "장착 완료");
+        Debug.Log(item.itemName + "장착 완료 이벤트");
+    }
+
+    public void BuyFeverTime() //피버타임 구메 함수
+    {
+        
+        if (this.money < this.feverTimePrice) {
+            Debug.Log("잔액이 부족합니다 이벤트");
+            return;
+        }
+
+        this.money -= this.feverTimePrice;
+        this.feverTime += this.buyFeverTime;
     }
 }
-/////////////////////////////////////////////////////
-// 1. 있는 기능 잘쓰기 => private static void int class  이런 기능 잘다루기 
-// 2. 알고리즘 잘쓰기 => 
