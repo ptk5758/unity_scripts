@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
     public void ToggleFever() //피버 토글 함수 겸사겸사 파티클
     {
-        isFever = !isFever;
+        isFever = !isFever;       
 
         if (isFever) {
             feverLight.color = Color.red;
