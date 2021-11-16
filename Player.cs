@@ -19,8 +19,7 @@ public class Player : MonoBehaviour
     public GameObject ShopUI; //상점 UI
 
     private Item item; //아이템
-    public Text weaponUi; //아이템 Ui
-    
+    public Text weaponUi; //아이템 Ui    
 
     private void Update()
     {
