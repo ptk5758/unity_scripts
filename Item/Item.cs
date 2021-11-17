@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
+using UnityEngine.EventSystems; //마우스 이벤트를 가져오는 코드
 using UnityEngine.UI;
 
 public class Item : MonoBehaviour, IPointerClickHandler
