@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
         int mp = this.moneyPower;
 
         if (this.item != null) {
-            mp += this.item.GetMp();
+            mp += this.item.GetMp();            
         }
 
         if (isFever) {
