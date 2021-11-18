@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Item : MonoBehaviour, IPointerClickHandler
 {
     public int price; // 가격
+    public Text priceUi; //가격 Ui
+
     public Player player; // 플레이어 오브젝트
     public string itemName; //아이템 이름    
     public int mp; //머니 파워
@@ -14,10 +16,12 @@ public class Item : MonoBehaviour, IPointerClickHandler
     public int level; //아이템의 레벨
     public Text levelUi; //아이템 레벨 UI
 
+    public int[] prices; //레벨별 가격
+
 
     private void Awake()
     {
-
+        
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -47,6 +51,8 @@ public class Item : MonoBehaviour, IPointerClickHandler
     {
         this.level++;
         levelUi.text = "Lv : " + this.level;
+        this.price = this.prices[this.level];
+        priceUi.text = this.price + "원";
     }
 
     
