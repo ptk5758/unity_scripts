@@ -33,7 +33,7 @@ public class Item : MonoBehaviour, IPointerClickHandler
         BuyItem();
     }
 
-    public void BuyItem()
+    public void BuyItem() //아이템 구메 이벤트
     {
         if (this.level == this.maxLevel) {
             Debug.Log("이미 최대 업그레이드 상태입니다");
@@ -50,12 +50,12 @@ public class Item : MonoBehaviour, IPointerClickHandler
         LevelUp();
     }
 
-    public int GetMp()
+    public int GetMp() //mp를 리턴
     {
         return this.mp;
     }
 
-    public virtual void LevelUp()
+    public virtual void LevelUp() //무기 레벨업 함수
     {
         this.level++;
         
